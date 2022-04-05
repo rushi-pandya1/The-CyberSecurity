@@ -28,3 +28,4 @@
     systemd:
       name: filebeat
       enabled: yes
+
