@@ -19,12 +19,12 @@ These files have been tested and used to generate a live ELK deployment on Azure
   - Playbook to Install Metricbeat: [Metricbeat Installation playbook](Ansible/metricbeat-playbook.yml)
 
 This document contains the following details:
-- [Description of the Topology]
-- [Access Policies]
-- [ELK Configuration]
-  - [Beats in Use]
-  - [Machines Being Monitored]
-- [How to Use the Ansible Build]
+- [Description of the Topology](https://github.com/rushi-pandya1/The-CyberSecurity#description-of-the-topology)
+- [Access Policies](https://github.com/rushi-pandya1/The-CyberSecurity#access-policies)
+- [ELK Configuration](https://github.com/rushi-pandya1/The-CyberSecurity#elk-configuration)
+ - [Machines Being Monitored](https://github.com/rushi-pandya1/The-CyberSecurity#machines-being-monitored)
+ - [Beats in Use](https://github.com/rushi-pandya1/The-CyberSecurity#beats-in-use)
+- [How to Use the Ansible Build](https://github.com/rushi-pandya1/The-CyberSecurity#how-to-use-the-ansible-build)
 
 
 ### Description of the Topology
@@ -75,12 +75,73 @@ A summary of the access policies in place can be found in the table below.
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it reduces potential for human error and also simplifies to configure many machines identically at same time.
 
 The playbook implements the following tasks:
-- 
-- ...
+- Step-1: Use "apt" module to install docker.io and python3-pip (Will use "update_cache" otherwise docker.io will not install, "update_cache" is equivalent to running "apt update" on command line)
+   ``` 
+     - name: Install docker.io
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: docker.io
+        state: present
+
+    - name: Install python3-pip
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+   ``` 
+- Step-2: Use "pip" module to install docker
+   ```
+    - name: Install Docker module
+      pip:
+        name: docker
+        state: present
+   ```
+- Step-3: Use "command" module to increase virtual memory and command is "sysctl -w vm.max_map_count=262144"
+   ```
+    - name: Increase virtual memory
+      command: sysctl -w vm.max_map_count=262144
+   ```
+- Step-4: Use "sysctl" module to use more memory and use memory size by putting value "262144" for "vm.max_map_count" and putting "yes" for "reload" option
+   ```
+    - name: Use more memory
+      sysctl:
+        name: vm.max_map_count
+        value: '262144'
+        state: present
+        reload: yes
+   ```
+- Step-5: Use "docker_container" module to download and launch docker elk container, image is "sebp/elk:761" ('sebp' is organization that made 'elk' container and '761' is version number)
+   ```
+    - name: download and launch a docker elk container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+   ```
+- Step-6: Use "published_ports" module along with "docker_container" module for port mappings to list ports that ELK server runs on, which are 5601, 9200, 5044
+   ```
+        published_ports:
+          -  5601:5601
+          -  9200:9200
+          -  5044:5044
+   ```
+- Step-7: Use "systemd" module to automatically "enable" docker service when ELK VM restarts
+   ```
+    - name: Enable service docker on boot
+      systemd:
+        name: docker
+        enabled: yes
+   ```
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+[Screenshot for Jump Box Docker list](Diagram/Jump_Box_Docker.png)
+[Screenshot for WebVM1 Docker list](Diagram/WebVM1_Docker.png)
+[Screenshot for WebVM2 Docker list](Diagram/WebVm2_Docker.png)
+[Screenshot for ELK Docker list](Diagram/ELK_Docker.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:

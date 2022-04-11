@@ -44,6 +44,7 @@
         image: sebp/elk:761
         state: started
         restart_policy: always
+
         # Please list the ports that ELK runs on
         published_ports:
           -  5601:5601
