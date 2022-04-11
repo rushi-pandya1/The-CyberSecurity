@@ -89,7 +89,6 @@ The playbook implements the following tasks:
         force_apt_get: yes
         name: python3-pip
         state: present
-
    ``` 
 - Step-2: Use "pip" module to install docker
    ```
@@ -138,32 +137,30 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-[Screenshot for Jump Box Docker list](Diagram/Jump_Box_Docker.png)
-[Screenshot for WebVM1 Docker list](Diagram/WebVM1_Docker.png)
-[Screenshot for WebVM2 Docker list](Diagram/WebVm2_Docker.png)
-[Screenshot for ELK Docker list](Diagram/ELK_Docker.png)
+![Screenshot for Jump Box Docker list](Diagram/Jump_Box_Docker.png)
+![Screenshot for WebVM1 Docker list](Diagram/WebVM1_Docker.png)
+![Screenshot for WebVM2 Docker list](Diagram/WebVm2_Docker.png)
+![Screenshot for ELK Docker list](Diagram/ELK_Docker.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- WebVM1: 10.1.0.5
+- WebVM2: 10.1.0.6
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+![Screenshot for Filebeat](Diagram/Filebeat.png)
+- Metricbeat
+![Screenshot for Metricbeat](Diagram/Metricbeat.png)
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat collects information like Syslog events & logs, Sudo Commands Usage, SSH logins, New Users and Groups. Example: Sudo Commands logs include statistics like Top Sudo Commands, Sudo Commands by Users
+- Metricbeat collects information like System Overview, Hosts Overview, Container Overview. Example: System Overview logs include statistics like Top Hosts by CPU, Top Hosts by Memory, Inbound & Outbound traffic
 
 ### Using the Playbook
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
-
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+- Copy the [ELK Playbook](Ansible/install-elk.yml) file to /etc/ansible folder in Ansible container.
+- Update the [Hosts file](Ansible/hosts) file to include IP Address for webserver and ELK server.
+- Run the playbook, and navigate to Kibana web app to check that the installation worked as expected. To reach Kibana web app use Elk Server's IP Address:5601/app/kibana
