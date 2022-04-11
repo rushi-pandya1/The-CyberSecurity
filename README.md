@@ -139,7 +139,7 @@ The following screenshots displays the result of running `docker ps` after succe
 - WebVM1 Docker Container
 ![Screenshot for WebVM1 Docker list](Diagrams/WebVM1_Docker.png)
 - WebVM1 Docker Container
-![Screenshot for WebVM2 Docker list](Diagrams/WebVm2_Docker.png)
+![Screenshot for WebVM2 Docker list](Diagrams/WebVM2_Docker.png)
 - Jump Box Docker Container
 ![Screenshot for Jump Box Docker list](Diagrams/Jump_Box_Docker.png)
 

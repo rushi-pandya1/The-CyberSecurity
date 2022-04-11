@@ -1,0 +1,2 @@
+#Based on results in Dealers_working_during_losses "Billy Jones" was the dealer that was dealing during every big game of loss, Command: grep -i "Billy" Dealers_working_during_losses | wc -l > Notes_Dealer_Analysis
+13

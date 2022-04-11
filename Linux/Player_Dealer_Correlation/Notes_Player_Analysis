@@ -1,0 +1,33 @@
+#Number of times loss occured on 0310, Command: grep "0310" Roulette_Losses | wc -l > Player_Analysis/Notes_Player_Analysis
+5
+
+#Number of times loss occured on 0312, Command: grep "0312" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+5
+
+#Number of times loss occured on 0315, Command: grep "0315" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+3
+
+#Total number of times loss occured during all 3 days, Command: cat Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis #Another Command: grep "031*" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis 
+13
+
+#performing grep for all players that played on 0310 at 5AM (first game with big loss) to see how times those players played out of 13
+
+#Number of times "Amirah" played when loss occured, Command: grep -i "Amirah" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+1
+
+#Number of times "Nola" played when loss occured, Command: grep -i "Nola" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+1
+
+#Number of time "Mylie" played when loss occured, Command: grep -i "Mylie" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+13
+
+#Number of time "Suhayb" played when loss occured, Command: grep -i "Suhayb" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+1
+
+#Number of time "Millicent" played when loss occured, Command: grep -i "Millicent" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+1
+
+#Number of time "Avi" played when loss occured, Command: grep -i "Avi" Roulette_Losses | wc -l >> Player_Analysis/Notes_Player_Analysis
+1
+
+#Based on above Result "Mylie" has Played all 13 times when big losses occured
