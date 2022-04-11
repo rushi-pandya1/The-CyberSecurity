@@ -1,6 +1,3 @@
-# The-CyberSecurity
-Exploring and learning the Operations of CyberSecurity
-
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
@@ -135,12 +132,16 @@ The playbook implements the following tasks:
         enabled: yes
    ```
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+The following screenshots displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![Screenshot for Jump Box Docker list](Diagram/Jump_Box_Docker.png)
-![Screenshot for WebVM1 Docker list](Diagram/WebVM1_Docker.png)
-![Screenshot for WebVM2 Docker list](Diagram/WebVm2_Docker.png)
-![Screenshot for ELK Docker list](Diagram/ELK_Docker.png)
+- ELK Docker Container
+![Screenshot for ELK Docker list](Diagrams/ELK_Docker.png)
+- WebVM1 Docker Container
+![Screenshot for WebVM1 Docker list](Diagrams/WebVM1_Docker.png)
+- WebVM1 Docker Container
+![Screenshot for WebVM2 Docker list](Diagrams/WebVm2_Docker.png)
+- Jump Box Docker Container
+![Screenshot for Jump Box Docker list](Diagrams/Jump_Box_Docker.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -149,9 +150,9 @@ This ELK server is configured to monitor the following machines:
 
 We have installed the following Beats on these machines:
 - Filebeat
-![Screenshot for Filebeat](Diagram/Filebeat.png)
+![Screenshot for Filebeat](Diagrams/Filebeat.png)
 - Metricbeat
-![Screenshot for Metricbeat](Diagram/Metricbeat.png)
+![Screenshot for Metricbeat](Diagrams/Metricbeat.png)
 
 These Beats allow us to collect the following information from each machine:
 - Filebeat collects information like Syslog events & logs, Sudo Commands Usage, SSH logins, New Users and Groups. Example: Sudo Commands logs include statistics like Top Sudo Commands, Sudo Commands by Users
@@ -162,5 +163,5 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the [ELK Playbook](Ansible/install-elk.yml) file to /etc/ansible folder in Ansible container.
-- Update the [Hosts file](Ansible/hosts) file to include IP Address for webserver and ELK server.
+- Update the [Hosts](Ansible/hosts) file to include IP Address for webserver and ELK server.
 - Run the playbook, and navigate to Kibana web app to check that the installation worked as expected. To reach Kibana web app use Elk Server's IP Address:5601/app/kibana
